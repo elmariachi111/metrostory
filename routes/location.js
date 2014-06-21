@@ -40,17 +40,21 @@ locationSvc.getDataForRoute = function (req, res) {
                     x = i;
                 }
             }
-        else {
+        else
+        {
             res.json({ items: "error"});
             return;
         }
         var resp = items[x].stations;
         var in_param = [];
-        for (i = 0; i<resp.length;i++) {
-            in_param.push(resp[i].name);
+        for (i = 0; i<resp.length;i++)
+        {
+            in_param.push(resp[i].id);
         }
-        db.collection('messages').find({"station": {"$elemMatch" : {$in : in_param}}}).toArray(function (err, items2) {
-            res.json({ items: items2});
+        db.collection('content').find({"nearStations": {"$elemMatch" : { "_id" : {$in : in_param}}}}).toArray(function (err, items2) {
+
+
+            res.json({ stations: resp , contents: items2});
         });
 
     });
