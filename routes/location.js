@@ -10,7 +10,7 @@ locationSvc.getLines = function (req, res) {
     var lon = req.param("lon"); //13.58
     var distance = req.param("min_dst");//1000
 
-    var v = db.collection('veebibi');
+    var v = db.collection('routes ');
 
     v.find({ "stations.loc": {
         $near: {
@@ -30,7 +30,7 @@ locationSvc.getLines = function (req, res) {
 locationSvc.getDataForRoute = function (req, res) {
     var line = req.param("line");
 
-    db.collection('veebibi').find({"line": line}).toArray(function (err, items) {
+    db.collection('routes').find({"line": line}).toArray(function (err, items) {
         var x = 0;
         var val = 0;
         if (items)
