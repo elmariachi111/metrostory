@@ -3,7 +3,8 @@ var Request = require('request'),
     und = require('underscore'),
     hashTag = "",
     nextUrl,
-    col = Mongo.collection('content');
+    col = Mongo.collection('content'),
+    stations = Mongo.collection('stations');
 
 // /Get hashTag from commandLine input
 process.argv.forEach(function (val, index, array) {
@@ -46,6 +47,29 @@ var success = function( err, body ) {
         if(st.location !== null){
             st._id = st.id;
             st.type = "instagram";
+
+            stations.find({ "loc" :
+            { $near :
+            {
+                $geometry : {
+                    type : "Point" ,
+                    coordinates : [ st.location.longitude, st.location.latitude ]},
+                $maxDistance : 200
+            }
+            }
+            }).toArray(function (err, result) {
+                    if(!err){
+                        st.nearStations = result;
+                        if (result.length != 0) {
+                            col.save(st, function(err){
+
+                            });
+                        }
+                    } else {
+                        console.log("Ups..." + err);
+                    }
+            });
+
             col.save( st, function(err){
 
             });

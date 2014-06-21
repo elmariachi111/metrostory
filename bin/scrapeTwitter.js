@@ -10,6 +10,7 @@ var tweetIds = [];
 var hashTags = "";
 
 var col = Mongo.collection('content');
+var stations = Mongo.collection('stations');
 
 //Get hashTags from commandLine input
 process.argv.forEach(function (val, index, array) {
@@ -48,8 +49,26 @@ var success = function(err, body) {
            st._id = st.id_str;
            st.type="tweet";
 
-           col.save(st, function(err){
+           stations.find({ "loc" :
+           { $near :
+           {
+               $geometry : {
+                   type : "Point" ,
+                   coordinates : st.coordinates.coordinates },
+               $maxDistance : 200
+           }
+           }
+           }).toArray(function (err, result) {
+                if(!err){
+                    st.nearStations = result;
+                       if (result.length == 0) {
+                        col.save(st, function(err){
 
+                        });
+                    }
+                } else {
+                    console.log("Ups..." + err);
+                }
            });
            tweetIds.push(st.id);
        }
