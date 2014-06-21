@@ -9,7 +9,7 @@ var lastTweetId;
 var tweetIds = [];
 var hashTags = "";
 
-var col = Mongo.collection('metrostory');
+var col = Mongo.collection('content');
 
 
 //Get hashTags from commandLine input
@@ -49,9 +49,9 @@ var success = function(err, body) {
            st._id = st.id_str;
            st.type="tweet";
 
-           //col.save(st, function(err){
+           col.save(st, function(err){
 
-           //});
+           });
            tweetIds.push(st.id);
        }
     });
