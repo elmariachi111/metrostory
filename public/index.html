@@ -1,9 +1,74 @@
 <html>
-<head>
+    <head>
+    <meta charset="utf-8">
+    <title>MetroStory</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MetroStory">
 
-</head>
+    <link rel="stylesheet" href="bower_components/ratchet2/css/ratchet.css" />
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <script src="javascripts/lib/zepto.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="javascripts/Main.js"></script>
+    <script src="javascripts/Models/Messages.js"></script>
+    <script src="javascripts/Views/WelcomeView.js"></script>
+    <script src="javascripts/Views/MessageView.js"></script>
+
+
+    </head>
 <body>
-<h1>Läuft</h1>
+
+<header class="bar bar-nav">
+    <button class="btn pull-left">
+        Stations
+    </button>
+    <!--button class="btn pull-right">
+        Right
+    </button-->
+    <h1 class="title">Metro Story</h1>
+</header>
+
+<div class="content-padded content-pane" id="welcome">
+    <h1>Hello</h1>
+    <button class="btn btn-positive btn-block" id="btn-localize">Tap here to check in...</button>
+    <ul class="table-view" id="route-list">
+
+    </ul>
+</div>
+
+<div class="content-padded content-pane in" id="messages">
+    <h1>Messages</h1>
+
+</div>
+
+
+<script>
+
+
+    $( function() {
+
+        var messageList = new MS.Models.MessageList;
+
+        var messageView = new MS.Views.MessageView({
+            el: $('#messages')
+        });
+
+        var welcomeView = new MS.Views.WelcomeView({
+            el: $('#welcome'),
+            messageList: messageList
+        });
+
+
+        messageView.listenTo(welcomeView, "localized", messageView.reload);
+
+    });
+</script>
 
 </body>
 </html>

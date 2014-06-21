@@ -1,0 +1,6 @@
+MS = {
+    Views: {},
+    Models: {}
+
+};
+
