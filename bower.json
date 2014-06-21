@@ -1,0 +1,30 @@
+{
+  "name": "MetroStory",
+  "version": "0.0.0",
+  "authors": [
+    "Stefan <stadolf@gmail.com>"
+  ],
+  "description": "A storytelling engine for commuters",
+  "main": "public index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+    "dependencies": {
+        "modernizr": "~2.6.2",
+        "requirejs": "~2.1.11",
+        "backbone": "~1.1.2",
+        "momentjs": "~2.6.0",
+        "ratchet2": "latest",
+        "masonry": "~3.1.5",
+        "iscroll": "~5.1.1"
+    },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
