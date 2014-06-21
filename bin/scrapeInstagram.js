@@ -3,7 +3,7 @@ var Request = require('request'),
     und = require('underscore'),
     hashTag = "",
     nextUrl,
-    col = Mongo.collection('content'),
+    col = Mongo.collection('content_2'),
     stations = Mongo.collection('stations');
 
 // /Get hashTag from commandLine input
@@ -47,6 +47,7 @@ var success = function( err, body ) {
         if(st.location !== null){
             st._id = st.id;
             st.type = "instagram";
+            st.created_time =  new Date(st.created_time * 1000);
 
             stations.find({ "loc" : {
                 $near : {

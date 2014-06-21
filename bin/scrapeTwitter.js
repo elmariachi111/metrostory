@@ -9,7 +9,7 @@ var lastTweetId;
 var tweetIds = [];
 var hashTags = "";
 
-var col = Mongo.collection('content');
+var col = Mongo.collection('content_2');
 var stations = Mongo.collection('stations');
 
 //Get hashTags from commandLine input
@@ -48,7 +48,7 @@ var success = function(err, body) {
        if(st.geo !== null) {
            st._id = st.id_str;
            st.type="tweet";
-
+           st.created_at = new Date(st.created_at);
            stations.find({ "loc" : {
                 $near : {
                     $geometry : {
