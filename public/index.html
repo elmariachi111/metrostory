@@ -17,6 +17,7 @@
     <script src="bower_components/backbone/backbone.js"></script>
     <script src="javascripts/Main.js"></script>
     <script src="javascripts/Models/Messages.js"></script>
+    <script src="javascripts/Models/Routes.js"></script>
     <script src="javascripts/Views/WelcomeView.js"></script>
     <script src="javascripts/Views/MessageView.js"></script>
 
@@ -56,7 +57,8 @@
         var messageList = new MS.Models.MessageList;
 
         var messageView = new MS.Views.MessageView({
-            el: $('#messages')
+            el: $('#messages'),
+            collection: messageList
         });
 
         var welcomeView = new MS.Views.WelcomeView({
@@ -64,8 +66,7 @@
             messageList: messageList
         });
 
-
-        messageView.listenTo(welcomeView, "localized", messageView.reload);
+        messageList.listenTo(welcomeView, "selected:route", messageList.reload);
 
     });
 </script>

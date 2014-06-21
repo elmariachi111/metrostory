@@ -9,19 +9,20 @@ MS.Views.RouteList = Backbone.View.extend({
         this.$el.html("");
         var self = this;
         this.collection.each( function(r)  {
-            var html = '<li class="table-view-cell" data-line="'+ r.get('line') +'">'+ r.get('line')+'</li>';
+            var html = '<li class="table-view-cell route" data-line="'+ r.get('line') +'">'+ r.get('line')+'</li>';
             self.$el.append( $(html) );
         });
     },
-    routeSelected: function() {
-
+    routeSelected: function(evt) {
+        var line = $(evt.target).attr("data-line");
+        this.trigger("selected:route", line);
     }
 
 });
 
 MS.Views.WelcomeView = Backbone.View.extend({
     events: {
-        "tap #btn-localize": "findRoute"
+        "tap #btn-localize": "localize"
     },
     initialize: function(options) {
         this.messageList = options.messageList;
@@ -36,8 +37,8 @@ MS.Views.WelcomeView = Backbone.View.extend({
 
         this.trigger("localized", navgPos.coords);
         this.routeChoices.fetch({data: {
-                lat: coords.latitude,
-                lon: coords.longitude },
+                lat: navgPos.coords.latitude,
+                lon: navgPos.coords.longitude },
                 reset:true}
         );
     },

@@ -7,7 +7,13 @@ MS.Models.MessageList = Backbone.Collection.extend({
     model: MS.Models.Message,
 
     url: function() {
-        return "/api/messages"
+        return MS.Constants.API_HOME + "/api/messages"
+    },
+    reload: function(route) {
+        this.fetch({data: {route:route}, reset:true});
+    },
+    parse: function(response) {
+        return response;
     }
 })
 
