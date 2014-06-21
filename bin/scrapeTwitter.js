@@ -9,7 +9,7 @@ var lastTweetId;
 var tweetIds = [];
 var hashTags = "";
 
-var col = Mongo.collection('content_2');
+var col = Mongo.collection('content');
 var stations = Mongo.collection('stations');
 
 //Get hashTags from commandLine input

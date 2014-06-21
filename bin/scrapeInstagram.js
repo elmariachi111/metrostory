@@ -3,7 +3,7 @@ var Request = require('request'),
     und = require('underscore'),
     hashTag = "",
     nextUrl,
-    col = Mongo.collection('content_2'),
+    col = Mongo.collection('content'),
     stations = Mongo.collection('stations');
 
 // /Get hashTag from commandLine input
