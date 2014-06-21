@@ -6,9 +6,9 @@ var UND = require('underscore');
 /* GET home page. */
 
 locationSvc.getLines = function (req, res) {
-    var lat = parseFloat(req.param("lat")); //52.66
-    var lon = parseFloat(req.param("lon")); //13.58
-    var distance = parseInt(req.param("radius"));//1000
+    var lat = req.param("lat"); //52.66
+    var lon = req.param("lon"); //13.58
+    var distance = req.param("min_dst");//1000
 
     var v = db.collection('veebibi');
 
@@ -18,14 +18,15 @@ locationSvc.getLines = function (req, res) {
                 type: "Point",
                 coordinates: [ lon , lat] },
             $maxDistance: distance
-            }
         }
-    },{target:1, line:1}).limit(100).toArray(function (err, items) {
+    }
+    }).limit(100).toArray(function (err, items) {
         res.json({ items: items});
+
     });
 };
 
-//todo: drop Märkische Zeile (id: 9096310)
+
 locationSvc.getDataForRoute = function (req, res) {
     var line = req.param("line");
 
@@ -40,12 +41,19 @@ locationSvc.getDataForRoute = function (req, res) {
                 }
             }
         else
+        {res.json({ items: "error"});
+        return;}
+        var resp = items[x].stations;
+        var in_param = [];
+        for (i = 0; i<resp.length;i++)
         {
-            res.json({ error: err});
-            return;
+            in_param.push(resp[i].name);
         }
+        db.collection('messages').find({"station": {"$elemMatch" : {$in : in_param}}}).toArray(function (err, items2) {
 
-        res.json({ items: items[x].stations});
+
+            res.json({ items: items2});
+        });
 
     });
 
