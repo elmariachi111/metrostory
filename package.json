@@ -7,7 +7,7 @@
     "postinstall": "./node_modules/bower/bin/bower install"
   },
     "engines" : {
-        "npm" : ">1.4.6",
+        "npm" : ">=1.4.6",
         "node": "0.10.26"
     },
   "dependencies": {
