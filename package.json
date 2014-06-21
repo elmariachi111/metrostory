@@ -8,7 +8,7 @@
   },
     "engines" : {
         "npm" : "1.4.15",
-        "node": "0.10.28"
+        "node": "0.10.26"
     },
   "dependencies": {
     "npm": "1.4.*",
