@@ -60,7 +60,7 @@ var success = function(err, body) {
            }).toArray(function (err, result) {
                 if(!err){
                     st.nearStations = result;
-                       if (result.length == 0) {
+                       if (result.length > 0) {
                         col.save(st, function(err){
 
                         });
