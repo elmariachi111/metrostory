@@ -22,6 +22,7 @@
     "mongoskin": "latest",
     "npm": "1.4.*",
     "serve-static": "^1.2.3",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+      "underscore": "latest"
   }
 }
