@@ -20,8 +20,15 @@ locationSvc.getLines = function (req, res) {
             $maxDistance: distance
         }
     }
-    },{target:1, line:1}).limit(100).toArray(function (err, items) {
-        res.json({ items: items});
+    },{target:1, line:1}).toArray(function (err, items) {
+        var x = [];
+        UND.forEach(items, function(item) {
+                x.push(item.line);
+        }
+        );
+        x = UND.uniq(x, function(item, key, a) {
+            return item;});
+        res.json({ items: x});
 
     });
 };
