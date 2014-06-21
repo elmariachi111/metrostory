@@ -25,7 +25,7 @@ locationSvc.getLines = function (req, res) {
     });
 };
 
-
+//todo: drop Märkische Zeile (id: 9096310)
 locationSvc.getDataForRoute = function (req, res) {
     var line = req.param("line");
 
@@ -40,10 +40,12 @@ locationSvc.getDataForRoute = function (req, res) {
                 }
             }
         else
-        {res.json({ items: "error"});
-        return;}
-        res.json({ items: items[x].stations});
+        {
+            res.json({ error: err});
+            return;
+        }
 
+        res.json({ items: items[x].stations});
 
     });
 
