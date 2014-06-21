@@ -20,7 +20,7 @@ locationSvc.getLines = function (req, res) {
             $maxDistance: distance
         }
     }
-    }).limit(100).toArray(function (err, items) {
+    },{target:1, line:1}).limit(100).toArray(function (err, items) {
         res.json({ items: items});
 
     });
