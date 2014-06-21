@@ -15,6 +15,8 @@ MS.Views.RouteSelectionView = Backbone.View.extend({
             var html = '<li class="table-view-cell route" data-line="'+ r.get('line') +'">'+ r.get('line')+'</li>';
             self.$tableView.append( $(html) );
         });
+        $(".content-pane").addClass("in");
+        this.$el.removeClass("in");
     },
     routeSelected: function(evt) {
         var line = $(evt.target).attr("data-line");
