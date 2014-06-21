@@ -4,6 +4,7 @@ MS.Views.RouteList = Backbone.View.extend({
     },
     initialize: function() {
         this.listenTo(this.collection, "reset", this.showRoutes);
+        this.$tableView = this.$("ul.table-view");
     },
     showRoutes: function() {
         this.$el.html("");
@@ -38,7 +39,8 @@ MS.Views.WelcomeView = Backbone.View.extend({
         this.trigger("localized", navgPos.coords);
         this.routeChoices.fetch({data: {
                 lat: navgPos.coords.latitude,
-                lon: navgPos.coords.longitude },
+                lon: navgPos.coords.longitude,
+                radius:MS.Constants.DEFAULT_ROUTE_RADIUS},
                 reset:true}
         );
     },

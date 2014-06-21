@@ -8,6 +8,6 @@ MS.Models.Routes = Backbone.Collection.extend({
         return MS.Constants.API_HOME +  "/api/getLinesForLoc";
     },
     parse: function(response) {
-        return response;
+        return response.items;
     }
 });
