@@ -11,7 +11,6 @@ process.argv.forEach(function (val, index, array) {
     if(index = 2)
         hashTag = val;
 });
-hashTag = hashTag.substring(0, hashTag.length - 1);
 
 var inBase = "https://api.instagram.com/v1";
 var endPoint = "/tags/"+ hashTag +"/media/recent";
@@ -23,6 +22,8 @@ var getInstaImage = function(hashTag, callback) {
     } else if(nextUrl != ""){
         var uri = nextUrl;
     }
+
+    console.log("Next Page:" + uri);
 
     var result = Request.get({
 
@@ -51,7 +52,6 @@ var success = function( err, body ) {
         }
     });
     nextUrl = body.pagination.next_url;
-    console.log("Next Page:" + nextUrl);
     getInstaImage(hashTag, success);
 }
 

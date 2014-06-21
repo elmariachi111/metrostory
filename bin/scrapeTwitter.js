@@ -11,7 +11,6 @@ var hashTags = "";
 
 var col = Mongo.collection('content');
 
-
 //Get hashTags from commandLine input
 process.argv.forEach(function (val, index, array) {
     //first two arguments are node specific arguments
