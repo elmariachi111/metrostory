@@ -6,7 +6,12 @@
     "start": "node ./bin/www",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
+    "engines" : {
+        "npm" : "1.4.15",
+        "node": "0.10.28"
+    },
   "dependencies": {
+    "npm": "1.4.*",
     "body-parser": "~1.0.0",
     "bower": "1.3.4",
     "cookie-parser": "~1.0.1",
