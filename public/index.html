@@ -21,7 +21,6 @@
     <script src="javascripts/Views/WelcomeView.js"></script>
     <script src="javascripts/Views/MessageView.js"></script>
 
-
     </head>
 <body>
 
@@ -36,20 +35,19 @@
 </header>
 
 <div class="content-padded content-pane" id="welcome">
-    <h1>Hello</h1>
     <button class="btn btn-positive btn-block" id="btn-localize">Tap here to check in...</button>
-    <div id="route-list">
-        <ul class="table-view" >
+</div>
 
-        </ul>
-    </div>
+<div class="content-pane scroll in" id="pane-select-route">
+    <ul class="table-view" >
+
+    </ul>
 </div>
 
 <div class="content-padded content-pane in" id="messages">
     <h1>Messages</h1>
 
 </div>
-
 
 <script>
 
@@ -63,9 +61,14 @@
             collection: messageList
         });
 
+        var routeView = new MS.Views.RouteSelectionView({
+            el: this.$('#pane-select-route')
+        });
+
         var welcomeView = new MS.Views.WelcomeView({
             el: $('#welcome'),
-            messageList: messageList
+            messageList: messageView,
+            routeView: routeView
         });
 
         messageList.listenTo(welcomeView, "selected:route", messageList.reload);
