@@ -49,14 +49,13 @@ var success = function(err, body) {
            st._id = st.id_str;
            st.type="tweet";
 
-           stations.find({ "loc" :
-           { $near :
-           {
-               $geometry : {
-                   type : "Point" ,
-                   coordinates : st.coordinates.coordinates },
-               $maxDistance : 200
-           }
+           stations.find({ "loc" : {
+                $near : {
+                    $geometry : {
+                        type : "Point" ,
+                        coordinates : st.coordinates.coordinates },
+                    $maxDistance : 200
+                }
            }
            }).toArray(function (err, result) {
                 if(!err){

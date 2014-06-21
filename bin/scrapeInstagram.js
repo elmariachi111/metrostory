@@ -48,14 +48,13 @@ var success = function( err, body ) {
             st._id = st.id;
             st.type = "instagram";
 
-            stations.find({ "loc" :
-            { $near :
-            {
-                $geometry : {
-                    type : "Point" ,
-                    coordinates : [ st.location.longitude, st.location.latitude ]},
-                $maxDistance : 200
-            }
+            stations.find({ "loc" : {
+                $near : {
+                    $geometry : {
+                        type : "Point" ,
+                        coordinates : [ st.location.longitude, st.location.latitude ]},
+                    $maxDistance : 200
+                }
             }
             }).toArray(function (err, result) {
                     if(!err){
