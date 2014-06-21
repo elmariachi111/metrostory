@@ -51,9 +51,13 @@ locationSvc.getDataForRoute = function (req, res) {
         {
             in_param.push(resp[i].id);
         }
-        db.collection('content').find({"nearStations": {"$elemMatch" : { "_id" : {$in : in_param}}}}).toArray(function (err, items2) {
-
-
+        db.collection('content').find({
+            "nearStations": {
+                "$elemMatch" : {
+                    "_id" : {$in : in_param}
+                }
+            }
+        }).toArray(function (err, items2) {
             res.json({ stations: resp , contents: items2});
         });
 
