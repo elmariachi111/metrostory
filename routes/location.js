@@ -6,11 +6,11 @@ var UND = require('underscore');
 /* GET home page. */
 
 locationSvc.getLines = function (req, res) {
-    var lat = req.param("lat"); //52.66
-    var lon = req.param("lon"); //13.58
-    var distance = req.param("min_dst");//1000
+    var lat = parseFloat(req.param("lat")); //52.66
+    var lon = parseFloat(req.param("lon")); //13.58
+    var distance = parseInt(req.param("radius"));//1000
 
-    var v = db.collection('routes ');
+    var v = db.collection('routes');
 
     v.find({ "stations.loc": {
         $near: {
@@ -40,18 +40,16 @@ locationSvc.getDataForRoute = function (req, res) {
                     x = i;
                 }
             }
-        else
-        {res.json({ items: "error"});
-        return;}
+        else {
+            res.json({ items: "error"});
+            return;
+        }
         var resp = items[x].stations;
         var in_param = [];
-        for (i = 0; i<resp.length;i++)
-        {
+        for (i = 0; i<resp.length;i++) {
             in_param.push(resp[i].name);
         }
         db.collection('messages').find({"station": {"$elemMatch" : {$in : in_param}}}).toArray(function (err, items2) {
-
-
             res.json({ items: items2});
         });
 
