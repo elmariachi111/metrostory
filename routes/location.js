@@ -1,7 +1,7 @@
 var locationSvc = {};
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var db = require('../db.js');
 
 /* GET home page. */
 
@@ -29,5 +29,5 @@ locationSvc.getDataForRoute = function (req, res) {
 router.get('/getLinesForLoc', locationSvc.getLines);
 
 
-    module.exports = router;
+module.exports = router;
 
