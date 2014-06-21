@@ -6,9 +6,9 @@ var UND = require('underscore');
 /* GET home page. */
 
 locationSvc.getLines = function (req, res) {
-    var lat = req.param("lat"); //52.66
-    var lon = req.param("lon"); //13.58
-    var distance = req.param("min_dst");//1000
+    var lat = parseFloat(req.param("lat")); //52.66
+    var lon = parseFloat(req.param("lon")); //13.58
+    var distance = parseInt(req.param("radius"));//1000
 
     var v = db.collection('veebibi');
 
@@ -18,11 +18,10 @@ locationSvc.getLines = function (req, res) {
                 type: "Point",
                 coordinates: [ lon , lat] },
             $maxDistance: distance
+            }
         }
-    }
-    }).limit(100).toArray(function (err, items) {
+    },{target:1, line:1}).limit(100).toArray(function (err, items) {
         res.json({ items: items});
-
     });
 };
 
