@@ -1,3 +1,12 @@
+MS.Views.Navbar = Backbone.View.extend({
+   events: {
+       "tap #btn-checkin": "checkin"
+   },
+   checkin: function() {
+       this.trigger("checkin");
+   }
+
+});
 MS.Views.RouteSelectionView = Backbone.View.extend({
     events: {
         "tap .route": "routeSelected"

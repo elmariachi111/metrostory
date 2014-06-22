@@ -1,7 +1,10 @@
 MS.Templates.Tweet = Handlebars.compile($('#tpl-tweet').html());
 MS.Templates.Instagram = Handlebars.compile($('#tpl-instagram').html());
 MS.Views.TweetView = Backbone.View.extend({
+    tagName: "div",
+    className: "tweet",
     render: function() {
+
         var json = this.model.toJSON();
         this.$el.html( MS.Templates.Tweet(json));
         return this;
@@ -9,6 +12,7 @@ MS.Views.TweetView = Backbone.View.extend({
 }) ;
 
 MS.Views.InstagramView = Backbone.View.extend({
+    className: "instagram",
     render: function() {
         var json = this.model.toJSON();
         this.$el.html( MS.Templates.Instagram(json));
@@ -26,6 +30,7 @@ MS.Views.MessageView = Backbone.View.extend({
         this.listenTo(this.collection, "reset", this.loaded);
     },
     loaded: function() {
+        this.$msgList.html("");
         $(".content-pane").addClass("in");
         this.$el.removeClass("in");
 
