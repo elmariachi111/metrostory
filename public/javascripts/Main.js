@@ -6,7 +6,8 @@ MS = {
         API_HOME: "http://metrostory.cloudcontrolapp.com",
         //API_HOME: "http://localhost:3000",
         DEFAULT_ROUTE_RADIUS: 1500,
-        MESSAGE_THROTTLE: 1000 //poll every 15s
+        MESSAGE_THROTTLE: 1000, //poll every 15s
+        LOCATION_THROTTLE: 3500 //watch position e 3,5s
     },
     Haversine: function(start, end, options) {
 

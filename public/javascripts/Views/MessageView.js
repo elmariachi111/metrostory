@@ -41,7 +41,7 @@ MS.Views.MessageView = Backbone.View.extend({
         this.curWatcher = navigator.geolocation.watchPosition(
             this.displayLocalizedContent.bind(this),
             function(err) { console.log(err); },
-            { frequency: 5000 }
+            { frequency: MS.Constants.LOCATION_THROTTLE }
         );
         console.log("Watcher created: " + this.curWatcher);
     },
