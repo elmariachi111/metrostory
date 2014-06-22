@@ -20,14 +20,15 @@ locationSvc.getLines = function (req, res) {
             $maxDistance: distance
         }
     }
-    },{target:1, line:1}).toArray(function (err, items) {
+    }, {target: 1, line: 1}).toArray(function (err, items) {
         var x = [];
-        UND.forEach(items, function(item) {
+        UND.forEach(items, function (item) {
                 x.push(item.line);
-        }
+            }
         );
-        x = UND.uniq(x, function(item, key, a) {
-            return item;});
+        x = UND.uniq(x, function (item, key, a) {
+            return item;
+        });
         res.json({ items: x});
 
     });
@@ -38,37 +39,31 @@ locationSvc.getDataForRoute = function (req, res) {
     var line = req.param("line");
 
     db.collection('routes').find({"line": line}).toArray(function (err, items) {
-        var x = 0;
-        var val = 0;
-        if (items)
-            for (var i = 0; i < items.length; i++) {
-                if (items[i].stations.length > val) {
-                    val = items[i].stations.length;
-                    x = i;
-                }
-            }
-        else
-        {
-            res.json({ items: "error"});
-            return;
-        }
-        var resp = items[x].stations;
-        var in_param = [];
-        for (i = 0; i<resp.length;i++)
-        {
-            in_param.push(resp[i].id);
-        }
-        db.collection('content').find({
-            "nearStations": {
-                "$elemMatch" : {
-                    "_id" : {$in : in_param}
-                }
-            }
-        }).toArray(function (err, items2) {
-            res.json({ stations: resp , contents: items2});
-        });
+            var stations = [];
+            if (items)
+                for (var i = 0; i < items.length; i++)
+                        stations = stations.concat(items[i].stations);
 
-    });
+            var resp = UND.uniq(stations, function (item, key, a) {
+                return item.id;
+            });
+            var in_param = [];
+            for (i = 0; i < resp.length; i++) {
+                in_param.push(resp[i].id);
+            }
+            db.collection('content').find({
+                "nearStations": {
+                    "$elemMatch": {
+                        "_id": {$in: in_param}
+                    }
+                }
+            }, {"place": 0, "comments": 0, "likes": 0, "entities.hashtags": 0}).toArray(function (err, items2) {
+                res.json({ stations: resp, contents: items2});
+            });
+
+        }
+    )
+    ;
 
 };
 
