@@ -47,9 +47,12 @@ locationSvc.getDataForRoute = function (req, res) {
             var resp = UND.uniq(stations, function (item, key, a) {
                 return item.id;
             });
+            resp = UND.filter(resp, function(item) {
+               return item.id != "9096310"; //drop Märkische Zeile
+            });
             var in_param = [];
             for (i = 0; i < resp.length; i++) {
-                in_param.push(resp[i].id);
+                    in_param.push(resp[i].id);
             }
             db.collection('content').find({
                 "nearStations": {
@@ -57,7 +60,7 @@ locationSvc.getDataForRoute = function (req, res) {
                         "_id": {$in: in_param}
                     }
                 }
-            }, {"place": 0, "comments": 0, "likes": 0, "entities.hashtags": 0}).toArray(function (err, items2) {
+            }, {"place": 0}).toArray(function (err, items2) {
                 res.json({ stations: resp, contents: items2});
             });
 
