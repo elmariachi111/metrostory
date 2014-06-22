@@ -13,13 +13,6 @@
     <link rel="stylesheet" href="stylesheets/style.css">
 
     <script src="javascripts/lib/zepto.min.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/backbone/backbone.js"></script>
-    <script src="javascripts/Main.js"></script>
-    <script src="javascripts/Models/Messages.js"></script>
-    <script src="javascripts/Models/Routes.js"></script>
-    <script src="javascripts/Views/WelcomeView.js"></script>
-    <script src="javascripts/Views/MessageView.js"></script>
 
     </head>
 <body>
@@ -44,13 +37,13 @@
     </ul>
 </div>
 
-<div class="content-padded content-pane in" id="messages">
-    <h1>Messages</h1>
+<div class="content-padded content-pane scroll in" id="messages">
+    <div id="message-list">
 
+    </div>
 </div>
 
 <script>
-
 
     $( function() {
 
@@ -75,6 +68,35 @@
 
     });
 </script>
+
+<script type="text/x-handlebars-template" id="tpl-tweet">
+    <div class="user">
+        <a href="https://twitter.com/{{user.screen_name}}" target="_blank"><img class="user" src="{{user.profile_image_url}}" width="50" /></a>
+        <h3><a href="https://twitter.com/{{user.screen_name}}" target="_blank">{{user.name}}</a></h3>
+        <small><a href="https://twitter.com/{{user.screen_name}}" target="_blank">@{{user.screen_name}}</a></small>
+    </div>
+    <p class="text">{{{tweettxt . }}}</p>
+    <div class="date"> <a href="https://twitter.com/{{user.screen_name}}/status/{{id_str}}" target="_blank">{{datefmt created}}</a> </div>
+    <div class="actions">
+        <p><a href="https://twitter.com/intent/tweet?in_reply_to={{id_str}}"><i class="glyph reply"> </i>Antworten</a></p>
+        <p><a href="https://twitter.com/intent/retweet?tweet_id={{id_str}}"><i class="glyph retweet"> </i>Retweeten</a></p>
+        <p><a href="https://twitter.com/intent/favorite?tweet_id={{id_str}}"><i class="glyph favorite"> </i>Favorisieren</a></p>
+
+    </div>
+</script>
+<script type="text/x-handlebars-template" id="tpl-instagram">
+    Instagram
+</script>
+
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="javascripts/Main.js"></script>
+<script src="javascripts/Models/Messages.js"></script>
+<script src="javascripts/Models/Routes.js"></script>
+<script src="javascripts/Views/WelcomeView.js"></script>
+<script src="javascripts/Views/MessageView.js"></script>
 
 </body>
 </html>
