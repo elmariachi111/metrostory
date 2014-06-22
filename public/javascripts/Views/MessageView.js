@@ -70,7 +70,8 @@ MS.Views.MessageView = Backbone.View.extend({
         }
         this.trigger("station:found", station);
         this.curStation = station;
-        this.$msgList.append('<h2>'+station.get('name')+'</h2>');
+        var $headline = $('<h2>'+station.get('name')+'</h2>');
+        this.$msgList.append($headline);
 
         var content = this.collection.findContent(station);
         console.log("displaying "+content.length+ " contents on " + station.get('name'));
@@ -91,6 +92,9 @@ MS.Views.MessageView = Backbone.View.extend({
 
             self.$msgList.append(msgView.render().$el);
         });
+        var scrt = $headline.position().top -20;
+        this.$el.scrollToTop(scrt);
+
     },
     localizeAndDisplay: function() {
         navigator.geolocation.getCurrentPosition(

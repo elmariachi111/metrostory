@@ -31,6 +31,9 @@ a {
 #station-bar h4 {
   text-align: center;
 }
+#message-list {
+  position: relative;
+}
 #message-list .tweet,
 #message-list .instagram {
   clear: both;
