@@ -65,11 +65,11 @@ a {
   background-size: 113%;
 }
 #welcome #btn-localize {
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
+  border-radius: 12px;
+  height: 70px;
+  width: 270px;
   margin: auto auto;
-  margin-top: 90%;
+  margin-top: 133%;
 }
 #pane-select-route ul.table-view li {
   font-size: 20px;
