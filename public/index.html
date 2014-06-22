@@ -13,29 +13,22 @@
     <link rel="stylesheet" href="stylesheets/style.css">
 
     <script src="javascripts/lib/zepto.min.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/backbone/backbone.js"></script>
-    <script src="javascripts/Main.js"></script>
-    <script src="javascripts/Models/Messages.js"></script>
-    <script src="javascripts/Models/Routes.js"></script>
-    <script src="javascripts/Views/WelcomeView.js"></script>
-    <script src="javascripts/Views/MessageView.js"></script>
-
+    <script src="javascripts/lib/twitter.js"></script>
     </head>
 <body>
 
-<header class="bar bar-nav">
-    <button class="btn pull-left">
+<header class="bar bar-nav" id="main-navbar">
+    <button class="btn pull-left" id="btn-checkin">
         Stations
     </button>
-    <!--button class="btn pull-right">
-        Right
-    </button-->
+    <button class="btn pull-right" id="btn-loadmsg">
+        Load
+    </button>
     <h1 class="title">Metro Story</h1>
 </header>
 
 <div class="content-padded content-pane" id="welcome">
-    <button class="btn btn-positive btn-block" id="btn-localize">Tap here to check in...</button>
+    <button class="btn btn-positive btn-block" id="btn-localize">Select your route...</button>
 </div>
 
 <div class="content-pane scroll in" id="pane-select-route">
@@ -44,13 +37,13 @@
     </ul>
 </div>
 
-<div class="content-padded content-pane in" id="messages">
-    <h1>Messages</h1>
+<div class="content-padded content-pane scroll in" id="messages">
+    <div id="message-list">
 
+    </div>
 </div>
 
 <script>
-
 
     $( function() {
 
@@ -71,10 +64,53 @@
             routeView: routeView
         });
 
+        var navBar = new MS.Views.Navbar({
+            el:$('#main-navbar')
+        }) ;
+
+        welcomeView.listenTo(navBar, "checkin", welcomeView.localize)
         messageList.listenTo(routeView, "selected:route", messageList.reload);
 
     });
 </script>
+
+<script type="text/x-handlebars-template" id="tpl-tweet">
+    <div class="user">
+        <a href="https://twitter.com/{{user.screen_name}}" target="_blank"><img class="user" src="{{user.profile_image_url}}" width="50" /></a>
+        <h3><a href="https://twitter.com/{{user.screen_name}}" target="_blank">{{user.name}}</a></h3>
+        <small><a href="https://twitter.com/{{user.screen_name}}" target="_blank">@{{user.screen_name}}</a></small>
+    </div>
+    <p class="text">{{{tweettxt . }}}</p>
+    <div class="date"> <a href="https://twitter.com/{{user.screen_name}}/status/{{id_str}}" target="_blank">{{datefmt created}}</a> </div>
+    <div class="actions">
+        <p><a href="https://twitter.com/intent/tweet?in_reply_to={{id_str}}"><i class="glyph reply"> </i>Antworten</a></p>
+        <p><a href="https://twitter.com/intent/retweet?tweet_id={{id_str}}"><i class="glyph retweet"> </i>Retweeten</a></p>
+        <p><a href="https://twitter.com/intent/favorite?tweet_id={{id_str}}"><i class="glyph favorite"> </i>Favorisieren</a></p>
+
+    </div>
+</script>
+<script type="text/x-handlebars-template" id="tpl-instagram">
+    <div class="user">
+        <a href="http://instagram.com/{{user.username}}" target="_blank"><img class="user" src="{{user.profile_picture}}" width="50" /></a>
+        <h3><a href="http://instagram.com/{{user.username}}" target="_blank">{{user.full_name}}</a></h3>
+        <small><a href="http://instagram.com/{{user.username}}" target="_blank">@{{user.username}}</a></small>
+    </div>
+    <p class="text">{{caption.text}}</p>
+    <div class="date"> <a href="{{link}}" target="_blank">{{datefmt created_time}}</a> </div>
+    <div class="image">
+        <img src="{{images.standard_resolution.url}}" />
+    </div>
+</script>
+
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="javascripts/Main.js"></script>
+<script src="javascripts/Models/Messages.js"></script>
+<script src="javascripts/Models/Routes.js"></script>
+<script src="javascripts/Views/WelcomeView.js"></script>
+<script src="javascripts/Views/MessageView.js"></script>
 
 </body>
 </html>

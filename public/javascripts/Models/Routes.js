@@ -11,7 +11,10 @@ MS.Models.Routes = Backbone.Collection.extend({
         return MS.Constants.API_HOME +  "/api/getLinesForLoc";
     },
     parse: function(response) {
-        return response.items;
+        var ret = _.map(response.items, function(it) {
+            return {'line': it};
+        })
+        return ret;
     },
     localized: function(navgPos) {
         this.fetch({data: {

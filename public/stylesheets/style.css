@@ -1,1 +1,145 @@
-body{padding-top:50px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}a{color:#00B7FF}.content-pane.scroll{position:absolute;top:0;right:0;bottom:0;left:0;overflow:auto}.content-pane.in{display:none}
+body {
+  padding-top: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.content-pane.scroll {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+.content-pane.in {
+  display: none;
+}
+#message-list .tweet,
+#message-list .instagram {
+  clear: both;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 0px 15px 15px 3px;
+  position: relative;
+}
+#message-list .tweet a:link,
+#message-list .instagram a:link,
+#message-list .tweet a:active,
+#message-list .instagram a:active,
+#message-list .tweet a:visited,
+#message-list .instagram a:visited {
+  text-decoration: none;
+}
+#message-list .tweet a:hover,
+#message-list .instagram a:hover {
+  text-decoration: underline;
+}
+#message-list .tweet .user,
+#message-list .instagram .user {
+  display: block;
+  margin-bottom: 5px;
+}
+#message-list .tweet .user img,
+#message-list .instagram .user img {
+  width: 30px;
+  float: left;
+  margin-right: 5px;
+}
+#message-list .tweet .user h3,
+#message-list .instagram .user h3,
+#message-list .tweet .user h3 a,
+#message-list .instagram .user h3 a {
+  font-size: 13px;
+  font-weight: bold;
+  color: #222;
+}
+#message-list .tweet .user small,
+#message-list .instagram .user small,
+#message-list .tweet .user small a,
+#message-list .instagram .user small a {
+  font-size: 11px;
+  font-weight: normal;
+  color: #999;
+}
+#message-list .tweet p.text,
+#message-list .instagram p.text {
+  clear: both;
+  word-wrap: break-word;
+}
+#message-list .tweet p.text a,
+#message-list .instagram p.text a {
+  color: #2e6795;
+}
+#message-list .tweet .date,
+#message-list .instagram .date,
+#message-list .tweet .date a,
+#message-list .instagram .date a {
+  color: #ddd;
+  font-size: 11px;
+}
+#message-list .tweet .image img,
+#message-list .instagram .image img {
+  max-width: 100%;
+}
+#message-list .tweet .actions,
+#message-list .instagram .actions {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+#message-list .tweet .actions p,
+#message-list .instagram .actions p {
+  float: left;
+  margin-left: 10px;
+  font-size: 10px;
+}
+#message-list .tweet .actions p a:link,
+#message-list .instagram .actions p a:link,
+#message-list .tweet .actions p a:active,
+#message-list .instagram .actions p a:active,
+#message-list .tweet .actions p a:visited,
+#message-list .instagram .actions p a:visited {
+  color: #ddd;
+}
+#message-list .tweet .actions p a:hover,
+#message-list .instagram .actions p a:hover {
+  color: #3b88c3;
+}
+#message-list .tweet .actions i.glyph,
+#message-list .instagram .actions i.glyph {
+  background-image: url('/images/everything-spritev2.png');
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  display: inline;
+  float: left;
+  margin-top: -3px;
+}
+#message-list .tweet .actions i.glyph.retweet,
+#message-list .instagram .actions i.glyph.retweet {
+  background-position: -80px 0px;
+}
+#message-list .tweet .actions i.glyph.retweet:hover,
+#message-list .instagram .actions i.glyph.retweet:hover {
+  background-position: -96px 0px;
+}
+#message-list .tweet .actions i.glyph.reply,
+#message-list .instagram .actions i.glyph.reply {
+  background-position: 0px 0px;
+}
+#message-list .tweet .actions i.glyph.reply:hover,
+#message-list .instagram .actions i.glyph.reply:hover {
+  background-position: -16px 0px;
+}
+#message-list .tweet .actions i.glyph.favorite,
+#message-list .instagram .actions i.glyph.favorite {
+  background-position: -32px 0px;
+}
+#message-list .tweet .actions i.glyph.favorite:hover,
+#message-list .instagram .actions i.glyph.favorite:hover {
+  background-position: -48px 0px;
+}
