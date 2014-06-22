@@ -47,6 +47,7 @@ var success = function( err, body ) {
         if(st.location !== null){
             st._id = st.id;
             st.type = "instagram";
+            st.created_time =  new Date(st.created_time * 1000);
 
             stations.find({ "loc" : {
                 $near : {

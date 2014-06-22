@@ -48,7 +48,7 @@ var success = function(err, body) {
        if(st.geo !== null) {
            st._id = st.id_str;
            st.type="tweet";
-
+           st.created_at = new Date(st.created_at);
            stations.find({ "loc" : {
                 $near : {
                     $geometry : {

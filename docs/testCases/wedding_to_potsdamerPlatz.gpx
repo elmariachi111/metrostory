@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gpx version="1.1" creator="www.gpxcreator.com" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+<metadata>
+<name><![CDATA[wedding_to_potsdamerPlatz]]></name>
+<link href="http://www.gpxcreator.com"><text>GPX Creator</text></link>
+<time>2014-06-21T21:55:37Z</time>
+<bounds minlat="52,50950865" minlon="13,35903168" maxlat="52,54227647" maxlon="13,38993073"></bounds>
+</metadata>
+
+<rte>
+<name><![CDATA[wedding_to_potsdamerPlatz]]></name>
+<rtept lat="52,54227647" lon="13,36606979">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,54091924" lon="13,36328030">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,54029282" lon="13,36169243">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53979689" lon="13,36087704">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53870061" lon="13,35967541">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53812636" lon="13,35933208">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53736938" lon="13,35907459">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53648187" lon="13,35903168">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53554213" lon="13,35933208">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53334934" lon="13,36164951">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53233121" lon="13,36272240">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53133918" lon="13,36375237">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,53005993" lon="13,36525440">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52891120" lon="13,36624146">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52784075" lon="13,36727142">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52666585" lon="13,36812973">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52515148" lon="13,36937428">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52499482" lon="13,36954594">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52509926" lon="13,37182045">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52499482" lon="13,37302208">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52468149" lon="13,37422371">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52413317" lon="13,37529659">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52329761" lon="13,37628365">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52267094" lon="13,37709904">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52204425" lon="13,37791443">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52154812" lon="13,37907314">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52133922" lon="13,38100433">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52141755" lon="13,38237762">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52120865" lon="13,38353634">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52086919" lon="13,38456631">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52052972" lon="13,38602543">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52034693" lon="13,38701248">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,52024248" lon="13,38825703">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,51029223" lon="13,38993073">
+<ele>0,000000</ele>
+</rtept>
+<rtept lat="52,50950865" lon="13,37684155">
+<ele>0,000000</ele>
+</rtept>
+</rte>
+
+</gpx>
