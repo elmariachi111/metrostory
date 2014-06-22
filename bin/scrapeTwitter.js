@@ -16,10 +16,11 @@ var stations = Mongo.collection('stations');
 process.argv.forEach(function (val, index, array) {
     //first two arguments are node specific arguments
     if(index >= 2)
-        hashTags += "%23" + val + "+";
+        hashTags += "#" + val + " OR ";
 });
-hashTags = hashTags.substring(0, hashTags.length - 1);
+hashTags = hashTags.substring(0, hashTags.length - 3);
 
+console.log(hashTags);
 var getTweets = function(hashTag, callback) {
 
     var result = Request.get({
@@ -28,7 +29,6 @@ var getTweets = function(hashTag, callback) {
         qs: {
             q: hashTag,
             count: 100,
-            'include_rts': false,
             max_id: lastTweetId
         },
         json: true,
@@ -77,7 +77,7 @@ var success = function(err, body) {
         console.log("Scrape Tweets");
     } else{
         lastTweetId = Math.min.apply(Math, tweetIds);
-        console.log("LastTweetId:" + lastTweetId);
+        console.log("LastTweetId: " + lastTweetId);
         getTweets(hashTags, success);
     }
 }
