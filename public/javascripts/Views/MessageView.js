@@ -1,8 +1,14 @@
 MS.Templates.Tweet = Handlebars.compile($('#tpl-tweet').html());
 MS.Templates.Instagram = Handlebars.compile($('#tpl-instagram').html());
 MS.Views.TweetView = Backbone.View.extend({
+    events: {
+        "click .btn.paypal": "paypal"
+    },
     tagName: "div",
     className: "tweet",
+    paypal: function() {
+        this.trigger("paypal", this.model);
+    },
     render: function() {
 
         var json = this.model.toJSON();
@@ -12,7 +18,14 @@ MS.Views.TweetView = Backbone.View.extend({
 }) ;
 
 MS.Views.InstagramView = Backbone.View.extend({
+    events: {
+        "click .btn.paypal": "paypal"
+    },
     className: "instagram",
+    paypal: function() {
+        this.trigger("paypal", this.model);
+    },
+
     render: function() {
         var json = this.model.toJSON();
         this.$el.html( MS.Templates.Instagram(json));
@@ -20,9 +33,7 @@ MS.Views.InstagramView = Backbone.View.extend({
     }
 });
 MS.Views.MessageView = Backbone.View.extend({
-    events: {
 
-    },
     initialize: function(options) {
         this.curWatcher = null;
         this.curPos = null;
@@ -30,6 +41,7 @@ MS.Views.MessageView = Backbone.View.extend({
         this.$msgList = this.$('#message-list')
         this.listenTo(this.collection, "reset", this.loaded);
     },
+
     loaded: function() {
         this.releaseWatcher();
 
@@ -89,7 +101,7 @@ MS.Views.MessageView = Backbone.View.extend({
                     model: msg
                 });
             }
-
+            self.listenTo(msgView, "paypal", self.paypal);
             self.$msgList.append(msgView.render().$el);
         });
         var scrt = $headline.position().top -20;
@@ -102,5 +114,14 @@ MS.Views.MessageView = Backbone.View.extend({
             function() { console.log("err"); },
             { timeout:3000 }
         );
+    },
+    paypal: function(message) {
+        console.dir(message);
+        $.get("/paypal/token", function(resp, arg2) {
+
+            var url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=" + resp.payKey
+            parent.location.replace(url);
+
+        });
     }
 });

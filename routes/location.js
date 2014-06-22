@@ -74,5 +74,6 @@ router.get('/getLinesForLoc', locationSvc.getLines);
 router.get('/getDataForRoute', locationSvc.getDataForRoute);
 
 
+
 module.exports = router;
 
