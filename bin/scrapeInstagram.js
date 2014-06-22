@@ -69,10 +69,6 @@ var success = function( err, body ) {
                         console.log("Ups..." + err);
                     }
             });
-
-            col.save( st, function(err){
-
-            });
         }
     });
     nextUrl = body.pagination.next_url;
