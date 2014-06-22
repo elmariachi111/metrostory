@@ -27,6 +27,10 @@
     <h1 class="title">Metro Story</h1>
 </header>
 
+<div class="bar bar-standard bar-header-secondary" id="station-bar">
+    <h4>current station</h4>
+</div>
+
 <div class="content-padded content-pane" id="welcome">
     <button class="btn btn-positive btn-block" id="btn-localize">Select your route...</button>
 </div>
@@ -37,7 +41,7 @@
     </ul>
 </div>
 
-<div class="content-padded content-pane scroll in" id="messages">
+<div class="content content-padded content-pane scroll in" id="messages">
     <div id="message-list">
 
     </div>
@@ -68,9 +72,16 @@
             el:$('#main-navbar')
         }) ;
 
-        welcomeView.listenTo(navBar, "checkin", welcomeView.localize)
-        messageList.listenTo(routeView, "selected:route", messageList.reload);
+        var stationBar = new MS.Views.Stationbar({
+            el:$('#station-bar')
+        });
 
+        welcomeView.listenTo(navBar, "checkin", welcomeView.localize)
+        messageView.listenTo(navBar, "checkin", messageView.releaseWatcher.bind(messageView));
+
+        messageList.listenTo(routeView, "selected:route", messageList.reload);
+        navBar.listenTo(routeView, "selected:route", navBar.routeChanged);
+        stationBar.listenTo(messageView, "station:found", stationBar.displayStation);
     });
 </script>
 

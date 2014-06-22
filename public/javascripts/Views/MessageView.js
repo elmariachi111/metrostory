@@ -24,24 +24,56 @@ MS.Views.MessageView = Backbone.View.extend({
 
     },
     initialize: function(options) {
-        this.intvl = null;
+        this.curWatcher = null;
         this.curPos = null;
+        this.curStation = null;
         this.$msgList = this.$('#message-list')
         this.listenTo(this.collection, "reset", this.loaded);
     },
     loaded: function() {
+        this.releaseWatcher();
+
         this.$msgList.html("");
         $(".content-pane").addClass("in");
         this.$el.removeClass("in");
 
         this.localizeAndDisplay();
-        this.intvl = window.setTimeout(
-            this.localizeAndDisplay.bind(this), MS.Constants.MESSAGE_THROTTLE)
+        this.curWatcher = navigator.geolocation.watchPosition(
+            this.displayLocalizedContent.bind(this),
+            function(err) { console.log(err); },
+            { frequency: 5000 }
+        );
+        console.log("Watcher created: " + this.curWatcher);
+    },
+    releaseWatcher: function() {
+        if (this.curWatcher) {
+            navigator.geolocation.clearWatch(this.curWatcher);
+            console.log("watcher "+this.curWatcher+" released");
+            this.curpos = null;
+        }
     },
     displayLocalizedContent: function(navgPos) {
-
+        if (this.curpos != null) {
+            var dist = MS.Haversine(this.curpos.coords, navgPos.coords);
+            console.log("you moved " + dist);
+            if (dist < 0.1) {
+                console.log("skipped");
+                return;
+            }
+        }
+        this.curpos = navgPos;
         var latlng = navgPos.coords;
-        var content = this.collection.findContent(latlng);
+        var station = this.collection.findNearestStation(latlng);
+        if (this.curStation == station) {
+            console.log("station didn't change");
+            return;
+        }
+        this.trigger("station:found", station);
+        this.curStation = station;
+        this.$msgList.append('<h2>'+station.get('name')+'</h2>');
+
+        var content = this.collection.findContent(station);
+        console.log("displaying "+content.length+ " contents on " + station.get('name'));
         var self = this;
         _.each(content, function(msg) {
             var type = msg.get("type");
@@ -57,10 +89,8 @@ MS.Views.MessageView = Backbone.View.extend({
                 });
             }
 
-
-            self.$msgList.prepend(msgView.render().$el);
+            self.$msgList.append(msgView.render().$el);
         });
-        //this.$el.prepend();
     },
     localizeAndDisplay: function() {
         navigator.geolocation.getCurrentPosition(

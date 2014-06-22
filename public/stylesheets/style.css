@@ -5,6 +5,9 @@ body {
 a {
   color: #00B7FF;
 }
+.bar-header-secondary ~ .content {
+  padding-top: 44px;
+}
 .content-pane.scroll {
   position: absolute;
   top: 0;
@@ -15,6 +18,18 @@ a {
 }
 .content-pane.in {
   display: none;
+}
+#station-bar {
+  z-index: 2;
+  top: 0px;
+  -webkit-transition: top 1s ease-in-out;
+  padding: 12px;
+}
+#station-bar.out {
+  top: 44px;
+}
+#station-bar h4 {
+  text-align: center;
 }
 #message-list .tweet,
 #message-list .instagram {

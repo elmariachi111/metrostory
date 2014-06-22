@@ -40,12 +40,15 @@ MS.Models.MessageList = Backbone.Collection.extend({
         this.stations.reset(response.stations);
         return response.contents;
     },
-    findContent: function(latlng) {
-       var nearestStation = this.stations.findClosestStation(latlng);
+    findNearestStation: function(latlng) {
+        return this.stations.findClosestStation(latlng);
+    },
+    findContent: function(station) {
 
+       var stationId = station.get('id');
        var tweetsForThatStation = this.filter( function(tweet) {
            return _.some(tweet.get('nearStations'), function(st) {
-               return st._id==nearestStation.get('id');
+               return st._id==stationId;
            });
        });
 

@@ -3,10 +3,35 @@ MS.Views.Navbar = Backbone.View.extend({
        "tap #btn-checkin": "checkin"
    },
    checkin: function() {
+       this.routeLeft();
        this.trigger("checkin");
+   },
+   routeChanged: function(route) {
+       this.$('h1').html(route);
+   },
+   routeLeft: function() {
+       this.$('h1').html("Metro Story");
    }
 
 });
+MS.Views.Stationbar = Backbone.View.extend({
+    events: {
+
+    },
+    displayStation: function(station) {
+      this.$('h4').html(station.get('name'));
+      this.show();
+    },
+    show: function() {
+        this.$el.addClass("out");
+        window.setTimeout( this.hide.bind(this), 3000);
+    },
+    hide: function() {
+        this.$el.removeClass("out");
+    }
+
+});
+
 MS.Views.RouteSelectionView = Backbone.View.extend({
     events: {
         "tap .route": "routeSelected"
@@ -18,6 +43,7 @@ MS.Views.RouteSelectionView = Backbone.View.extend({
         this.$tableView = this.$("ul.table-view");
     },
     showRoutes: function() {
+
         this.$tableView.html("");
         var self = this;
         this.collection.each( function(r)  {
