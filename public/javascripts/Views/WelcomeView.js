@@ -2,16 +2,18 @@ MS.Views.Navbar = Backbone.View.extend({
    events: {
        "tap #btn-checkin": "checkin"
    },
+    initialize: function(options) {
+        this.listenTo(options.routeView, "routes:shown selected:route", this.showTitle);
+    },
+    showTitle: function(title) {
+        this.$('h1').html(title);
+
+    },
    checkin: function() {
-       this.routeLeft();
+       this.showTitle("Metro Story");
        this.trigger("checkin");
-   },
-   routeChanged: function(route) {
-       this.$('h1').html(route);
-   },
-   routeLeft: function() {
-       this.$('h1').html("Metro Story");
    }
+
 
 });
 MS.Views.Stationbar = Backbone.View.extend({
@@ -50,6 +52,7 @@ MS.Views.RouteSelectionView = Backbone.View.extend({
             var html = '<li class="table-view-cell route" data-line="'+ r.get('line') +'">'+ r.get('line')+'</li>';
             self.$tableView.append( $(html) );
         });
+        this.trigger("routes:shown", "Routes");
         $(".content-pane").addClass("in");
         this.$el.removeClass("in");
     },

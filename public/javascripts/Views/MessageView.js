@@ -70,7 +70,7 @@ MS.Views.MessageView = Backbone.View.extend({
         }
         this.trigger("station:found", station);
         this.curStation = station;
-        var $headline = $('<h2>'+station.get('name')+'</h2>');
+        var $headline = $('<h3 class="station">'+station.get('name')+'</h3>');
         this.$msgList.append($headline);
 
         var content = this.collection.findContent(station);

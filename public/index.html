@@ -68,7 +68,8 @@
         });
 
         var navBar = new MS.Views.Navbar({
-            el:$('#main-navbar')
+            el:$('#main-navbar'),
+            routeView: routeView
         }) ;
 
         var stationBar = new MS.Views.Stationbar({
@@ -79,7 +80,7 @@
         messageView.listenTo(navBar, "checkin", messageView.releaseWatcher.bind(messageView));
 
         messageList.listenTo(routeView, "selected:route", messageList.reload);
-        navBar.listenTo(routeView, "selected:route", navBar.routeChanged);
+
         stationBar.listenTo(messageView, "station:found", stationBar.displayStation);
     });
 </script>

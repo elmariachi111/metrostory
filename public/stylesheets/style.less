@@ -1,3 +1,10 @@
+@col-darkblue: #334D5C;
+@col-cyan: #45B29D;
+@col-yellow: #EFC94C;
+@col-orange: #E27A3F;
+@col-salmon: #DF4949;
+
+
 body {
   padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -24,6 +31,21 @@ a {
     display:none;
   }
 }
+.btn {
+  border:none;
+  &.btn-positive {
+    background:@col-orange;
+  }
+}
+.bar-nav .btn {
+background: white;
+  color:@col-darkblue;
+}
+#main-navbar {
+  background: @col-darkblue;
+  h1 {color: white; line-height:42px;}
+}
+
 #station-bar {
   z-index:2;
   top:0px;
@@ -36,8 +58,19 @@ a {
     text-align:center;
   }
 }
+#welcome {
+  #btn-localize {
+    margin-top:75%;
+  }
+}
 #message-list {
   position:relative;
+  h3.station {
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid #EEE;
+    padding: 20px 0px 11px 0px;
+  }
   .tweet, .instagram {
 
     clear:both;

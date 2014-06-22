@@ -19,6 +19,23 @@ a {
 .content-pane.in {
   display: none;
 }
+.btn {
+  border: none;
+}
+.btn.btn-positive {
+  background: #e27a3f;
+}
+.bar-nav .btn {
+  background: white;
+  color: #334d5c;
+}
+#main-navbar {
+  background: #334d5c;
+}
+#main-navbar h1 {
+  color: white;
+  line-height: 42px;
+}
 #station-bar {
   z-index: 2;
   top: 0px;
@@ -31,8 +48,17 @@ a {
 #station-bar h4 {
   text-align: center;
 }
+#welcome #btn-localize {
+  margin-top: 75%;
+}
 #message-list {
   position: relative;
+}
+#message-list h3.station {
+  font-size: 18px;
+  text-align: center;
+  border-bottom: 1px solid #EEE;
+  padding: 20px 0px 11px 0px;
 }
 #message-list .tweet,
 #message-list .instagram {
