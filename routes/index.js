@@ -49,8 +49,6 @@ router.get('/paypal/token', function(req,res ) {
             }
         }
     );
-
-
 });
 router.get('/paypal/return', function(req, res) {
     console.log("return");
