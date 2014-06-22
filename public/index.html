@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="MetroStory">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bower_components/ratchet2/css/ratchet.css" />
     <link rel="stylesheet" href="stylesheets/style.css">
 
@@ -40,7 +40,7 @@
     </ul>
 </div>
 
-<div class="content content-padded content-pane scroll in" id="messages">
+<div class="content content-pane scroll in" id="messages">
     <div id="message-list">
 
     </div>
@@ -107,8 +107,9 @@
         <small><a href="http://instagram.com/{{user.username}}" target="_blank">@{{user.username}}</a></small>
     </div>
     <p class="text">{{caption.text}}</p>
-    <div class="date"> <a href="{{link}}" target="_blank">{{datefmt created_time}}</a> </div>
+
     <div class="image">
+        <div class="date"> <a href="{{link}}" target="_blank">{{datefmt created_time}}</a> </div>
         <img src="{{images.standard_resolution.url}}" />
     </div>
 </script>
