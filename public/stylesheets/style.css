@@ -1,6 +1,10 @@
 body {
   padding-top: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Open Sans', sans-serif;
+}
+input,
+button {
+  font-family: 'Open Sans', sans-serif !important;
 }
 a {
   color: #00B7FF;
@@ -15,6 +19,7 @@ a {
   bottom: 0;
   left: 0;
   overflow: auto;
+  padding-top: 44px;
 }
 .content-pane.in {
   display: none;
@@ -23,7 +28,7 @@ a {
   border: none;
 }
 .btn.btn-positive {
-  background: #e27a3f;
+  background: #45b29d;
 }
 .bar-nav .btn {
   background: white;
@@ -48,8 +53,22 @@ a {
 #station-bar h4 {
   text-align: center;
 }
+#welcome {
+  background: url("../images/bg.jpg");
+  background-position: 60% 44%;
+  background-size: 113%;
+}
 #welcome #btn-localize {
-  margin-top: 75%;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin: auto auto;
+  margin-top: 90%;
+}
+#pane-select-route ul.table-view li {
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 #message-list {
   position: relative;

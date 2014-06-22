@@ -7,7 +7,11 @@
 
 body {
   padding-top: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Open Sans', sans-serif;
+}
+
+input, button {
+  font-family:  'Open Sans', sans-serif !important;
 }
 
 a {
@@ -24,6 +28,7 @@ a {
     bottom: 0;
     left: 0;
     overflow: auto;
+    padding-top: 44px;
   }
 
 
@@ -34,13 +39,14 @@ a {
 .btn {
   border:none;
   &.btn-positive {
-    background:@col-orange;
+    background:@col-cyan;
   }
 }
 .bar-nav .btn {
 background: white;
   color:@col-darkblue;
 }
+
 #main-navbar {
   background: @col-darkblue;
   h1 {color: white; line-height:42px;}
@@ -59,8 +65,24 @@ background: white;
   }
 }
 #welcome {
+  background: url("../images/bg.jpg");
+  background-position: 60% 44%;
+  background-size:113%;
+
   #btn-localize {
-    margin-top:75%;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin: auto auto;
+    margin-top: 90%;
+  }
+}
+
+#pane-select-route {
+  ul.table-view li {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }
 #message-list {
