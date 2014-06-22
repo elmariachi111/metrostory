@@ -3,8 +3,8 @@ MS = {
     Models: {},
     Templates: {},
     Constants: {
-        //API_HOME: "http://metrostory.cloudcontrolapp.com",
-        API_HOME: "http://localhost:3000",
+        API_HOME: "http://metrostory.cloudcontrolapp.com",
+        //API_HOME: "http://localhost:3000",
         DEFAULT_ROUTE_RADIUS: 1500,
         MESSAGE_THROTTLE: 1000 //poll every 15s
     },
