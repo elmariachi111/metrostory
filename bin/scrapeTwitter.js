@@ -1,85 +1,16 @@
-var Request = require('request'),
-    Mongo = require('../db.js'),
-    und = require('underscore');
+#!/usr/bin/env node
 
-var twBase = "https://api.twitter.com/1.1";
-var endpoint = "/search/tweets.json";
+var und = require('underscore');
+var Parser = require('../backend/TwitterParser.js');
 
-var lastTweetId;
-var tweetIds = [];
-var hashTags = "";
+var tags = process.argv.slice(2);
+var qString = tags.join(" OR ");
 
-var col = Mongo.collection('content');
-var stations = Mongo.collection('stations');
-
-//Get hashTags from commandLine input
-process.argv.forEach(function (val, index, array) {
-    //first two arguments are node specific arguments
-    if(index >= 2)
-        hashTags += "#" + val + " OR ";
+var p = new Parser({
+    geocode: '52.523300,13.413770,10mi',
+    q: qString,
+    result_type: 'recent',
+    until: '2014-06-22'
 });
-hashTags = hashTags.substring(0, hashTags.length - 3);
+p.getTweets();
 
-console.log(hashTags);
-var getTweets = function(hashTag, callback) {
-
-    var result = Request.get({
-
-        uri: twBase + endpoint,
-        qs: {
-            q: hashTag,
-            count: 100,
-            max_id: lastTweetId
-        },
-        json: true,
-        auth: { 'bearer': process.env.TWITTER_ACCESSTOKEN}
-    },
-    function ( error, response, body ){
-        if(!error && response.statusCode == 200){
-            callback(null, body);
-        } else {
-            console.log("F**k" + error);
-        }
-    });
-}
-
-var success = function(err, body) {
-    und.forEach( body.statuses, function(st) {
-       if(st.geo !== null) {
-           st._id = st.id_str;
-           st.type="tweet";
-           st.created_at = new Date(st.created_at);
-           stations.find({ "loc" : {
-                $near : {
-                    $geometry : {
-                        type : "Point" ,
-                        coordinates : st.coordinates.coordinates },
-                    $maxDistance : 200
-                }
-           }
-           }).toArray(function (err, result) {
-                if(!err){
-                    st.nearStations = result;
-                       if (result.length > 0) {
-                        col.save(st, function(err){
-
-                        });
-                    }
-                } else {
-                    console.log("Ups..." + err);
-                }
-           });
-           tweetIds.push(st.id);
-       }
-    });
-
-    if(lastTweetId == Math.min.apply(Math, tweetIds)){
-        console.log("Scrape Tweets");
-    } else{
-        lastTweetId = Math.min.apply(Math, tweetIds);
-        console.log("LastTweetId: " + lastTweetId);
-        getTweets(hashTags, success);
-    }
-}
-
-getTweets(hashTags, success);
