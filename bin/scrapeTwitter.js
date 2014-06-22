@@ -41,6 +41,24 @@ var getTweets = function(hashTag, callback) {
             console.log("F**k" + error);
         }
     });
+
+    var geoResult = Request.get({
+            uri: twBase + endpoint,
+            qs: {
+                geocode: "52.521918,13.413215,20km",
+                count: 100,
+                max_id: lastTweetId
+            },
+            json: true,
+            auth: { 'bearer': process.env.TWITTER_ACCESSTOKEN}
+    },
+    function ( error, response, body ){
+        if(!error && response.statusCode == 200){
+            callback(null, body);
+        } else {
+            console.log("F**k" + error);
+        }
+    });
 }
 
 var success = function(err, body) {
@@ -54,7 +72,7 @@ var success = function(err, body) {
                     $geometry : {
                         type : "Point" ,
                         coordinates : st.coordinates.coordinates },
-                    $maxDistance : 200
+                    $maxDistance : 500
                 }
            }
            }).toArray(function (err, result) {
@@ -73,11 +91,8 @@ var success = function(err, body) {
        }
     });
 
-    if(lastTweetId == Math.min.apply(Math, tweetIds)){
-        console.log("Scrape Tweets");
-    } else{
+    if(lastTweetId != Math.min.apply(Math, tweetIds)){
         lastTweetId = Math.min.apply(Math, tweetIds);
-        console.log("LastTweetId: " + lastTweetId);
         getTweets(hashTags, success);
     }
 }
