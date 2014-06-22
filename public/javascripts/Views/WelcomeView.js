@@ -49,7 +49,7 @@ MS.Views.RouteSelectionView = Backbone.View.extend({
         this.$tableView.html("");
         var self = this;
         this.collection.each( function(r)  {
-            var html = '<li class="table-view-cell route" data-line="'+ r.get('line') +'">'+ r.get('line')+'</li>';
+            var html = '<li class="table-view-cell route '+ r.get('class') +'" data-line="'+ r.get('line') +'">'+ r.get('line')+'</li>';
             self.$tableView.append( $(html) );
         });
         this.trigger("routes:shown", "Routes");

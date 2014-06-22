@@ -70,6 +70,28 @@ a {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+#pane-select-route .route:before {
+  vertical-align: sub;
+  margin-right: 10px;
+}
+#pane-select-route .route.sbahn:before {
+  content: url('/images/icon_sbahn.png');
+}
+#pane-select-route .route.bus:before {
+  content: url('/images/icon_bus.png');
+}
+#pane-select-route .route.ubahn:before {
+  content: url('/images/icon_ubahn.png');
+}
+#pane-select-route .route.nacht:before {
+  content: url('/images/icon_nacht.png');
+}
+#pane-select-route .route.regio:before {
+  content: url('/images/icon_regio.png');
+}
+#pane-select-route .route.tram:before {
+  content: url('/images/icon_tram.png');
+}
 #message-list {
   position: relative;
 }

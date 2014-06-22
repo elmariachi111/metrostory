@@ -12,7 +12,17 @@ MS.Models.Routes = Backbone.Collection.extend({
     },
     parse: function(response) {
         var ret = _.map(response.items, function(it) {
-            return {'line': it};
+            var firstL = it.toUpperCase().charAt(0);
+            var cls ="";
+            switch( firstL) {
+                case "B": cls="bus"; break;
+                case "U": cls="ubahn"; break;
+                case "S": cls="sbahn"; break;
+                case "T": cls="tram"; break;
+                case "N": cls="nacht"; break;
+                case "R": cls="regio"; break;
+            }
+            return {'line': it, "class": cls};
         })
         return ret;
     },
