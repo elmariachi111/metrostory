@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var db = require('./db');
 var routes = require('./routes/index');
 var api = require('./routes/location');
+var Cron = require('cron');
 
 var app = express();
 
@@ -62,5 +63,12 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var cronjob = new Cron.CronJob("00 * * * * *", function() {
+    console.log("cronjob running");
+}, function() {
+    console.log("cronjob completed");
+}, false);
+
+cronjob.start();
 
 module.exports = app;
